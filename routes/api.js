@@ -27,7 +27,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     const userId = req.user._id; // Or use a token if you implement JWT
-    res.redirect(`http://localhost:5173/dashboard?user=${userId}`);
+    res.redirect(`https://google-calendar-frontend.vercel.app/dashboard?user=${userId}`);
   }
 );
 
