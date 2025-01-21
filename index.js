@@ -20,11 +20,27 @@ app.use(initializePassport.initialize());
 app.use(initializePassport.session());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error(err));
+var status = ''
 
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(()=> {
+        console.log('Connected to mongodb')
+        status = 'connected'
+    })
+    .catch((error)=>{
+        console.error('Failed to connect : ', error)
+        status = 'unable to connect'
+    })
 
+app.get('/api/message', (req, res) => {
+    const message = {
+        message: 'Hello, we reached a server and db',
+        timestamp: new Date().toISOString(),
+        status,
+    };
+    res.json(message);
+});
   
 // Routes
 app.use("/", apiRoutes);
