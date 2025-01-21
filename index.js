@@ -19,17 +19,7 @@ app.use(cors({
   credentials: true,// Allow sending cookies and authentication tokens
 }));
 app.use(express.json());
-// app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
-app.use(session({
-  secret: "secret",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: true, // Only set to true with HTTPS
-    httpOnly: true,
-    sameSite: 'lax',
-  },
-}));
+app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
 app.use(initializePassport.initialize());
 app.use(initializePassport.session());
 
