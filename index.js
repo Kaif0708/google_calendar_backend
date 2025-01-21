@@ -11,9 +11,13 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware
+// app.use(cors({
+//   origin: "*",
+// }))
 app.use(cors({
-  origin: "*",
-}))
+  origin: 'https://google-calendar-frontend.vercel.app', // Replace with your frontend URL
+  credentials: true, // Allow sending cookies and authentication tokens
+}));
 app.use(express.json());
 app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
 app.use(initializePassport.initialize());
