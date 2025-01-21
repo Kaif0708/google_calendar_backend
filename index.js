@@ -15,7 +15,8 @@ const PORT = process.env.PORT || 4000;
 //   origin: "*",
 // }))
 app.use(cors({
-  origin: 'https://google-calendar-frontend.vercel.app', // Replace with your frontend URL // Allow sending cookies and authentication tokens
+  origin: 'https://google-calendar-frontend.vercel.app', // Replace with your frontend URL 
+  credentials: true,// Allow sending cookies and authentication tokens
 }));
 app.use(express.json());
 app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
